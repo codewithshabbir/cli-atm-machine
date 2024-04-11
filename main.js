@@ -34,17 +34,20 @@ async function main() {
                     name: "mainMenu",
                     message: "Please select your transaction",
                     choices: [
-                        "Balance Inquiry", "Withdrawal", "Deposit", "Exit",
+                        "Balance Inquiry",
+                        "Withdrawal",
+                        "Deposit",
+                        "Exit",
                     ],
                 });
-                if (mainMenuPrompt.mainMenu.toLowerCase() == "balance inquiry") {
+                if (mainMenuPrompt.mainMenu.toLowerCase() === "balance inquiry") {
                     console.log("\n");
                     console.log("***********************************************************");
                     console.log(`**************** Your Balance: ${balance} *****************`);
                     console.log("***********************************************************");
                     console.log("\n");
                 }
-                else if (mainMenuPrompt.mainMenu.toLowerCase() == "withdrawal") {
+                else if (mainMenuPrompt.mainMenu.toLowerCase() === "withdrawal") {
                     console.log("\n");
                     console.log("**********************************************************************");
                     console.log(`**************** Your Current Balance is: ${balance} *****************`);
@@ -64,15 +67,7 @@ async function main() {
                             message: "Please select your amount",
                             choices: ["5000", "10000", "15000", "20000", "25000", "Other Amount"]
                         });
-                        if (balance >= Number(withdrawalAmount.withdrawl)) {
-                            balance -= Number(withdrawalAmount.withdrawl);
-                            console.log("\n");
-                            console.log("**********************************************************************");
-                            console.log(`**************** Your Updated Balance is: ${balance} *****************`);
-                            console.log("**********************************************************************");
-                            console.log("\n");
-                        }
-                        else if (withdrawalAmount.withdrawl.toLowerCase() == "other amount") {
+                        if (withdrawalAmount.withdrawl.toLowerCase() === "other amount") {
                             const withdrawalOtherAmount = await inquirer.prompt({
                                 type: "number",
                                 name: "withdrawl",
@@ -80,21 +75,35 @@ async function main() {
                             });
                             if (balance >= withdrawalOtherAmount.withdrawl) {
                                 balance -= withdrawalOtherAmount.withdrawl;
+                            }
+                            else {
                                 console.log("\n");
                                 console.log("**********************************************************************");
-                                console.log(`**************** Your Updated Balance is: ${balance} *****************`);
+                                console.log(`**************** Insufficient funds *****************`);
                                 console.log("**********************************************************************");
                                 console.log("\n");
                             }
-                            console.log("\n");
-                            console.log("**********************************************************************");
-                            console.log(`**************** Your Updated Balance is: ${balance} *****************`);
-                            console.log("**********************************************************************");
-                            console.log("\n");
                         }
+                        else {
+                            if (balance >= Number(withdrawalAmount.withdrawl)) {
+                                balance -= Number(withdrawalAmount.withdrawl);
+                            }
+                            else {
+                                console.log("\n");
+                                console.log("**********************************************************************");
+                                console.log(`**************** Insufficient funds *****************`);
+                                console.log("**********************************************************************");
+                                console.log("\n");
+                            }
+                        }
+                        console.log("\n");
+                        console.log("**********************************************************************");
+                        console.log(`**************** Your Updated Balance is: ${balance} *****************`);
+                        console.log("**********************************************************************");
+                        console.log("\n");
                     }
                 }
-                else if (mainMenuPrompt.mainMenu.toLowerCase() == "deposit") {
+                else if (mainMenuPrompt.mainMenu.toLowerCase() === "deposit") {
                     console.log("\n");
                     console.log("**********************************************************************");
                     console.log(`**************** Your Current Balance is: ${balance} *****************`);
@@ -105,16 +114,14 @@ async function main() {
                         name: "deposit",
                         message: "Please enter your amount:",
                     });
-                    if (balance >= depositAmount.deposit) {
-                        balance += depositAmount.deposit;
-                        console.log("\n");
-                        console.log("**********************************************************************");
-                        console.log(`**************** Your Updated Balance is: ${balance} *****************`);
-                        console.log("**********************************************************************");
-                        console.log("\n");
-                    }
+                    balance += depositAmount.deposit;
+                    console.log("\n");
+                    console.log("**********************************************************************");
+                    console.log(`**************** Your Updated Balance is: ${balance} *****************`);
+                    console.log("**********************************************************************");
+                    console.log("\n");
                 }
-                else if (mainMenuPrompt.mainMenu.toLowerCase() == "exit") {
+                else if (mainMenuPrompt.mainMenu.toLowerCase() === "exit") {
                     console.log("\n");
                     console.log("***********************************************************");
                     console.log(`**************** Thanks for Using Our ATM *****************`);

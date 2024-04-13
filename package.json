@@ -1,15 +1,20 @@
 {
-  "name": "cli-atm",
+  "name": "s786s-cli-atm-machine",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple CLI ATM machine application built with Node.js and Inquirer.",
   "main": "main.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "cli",
+    "atm",
+    "node",
+    "inquirer"
+  ],
+  "author": "Muhammad Shabbir",
+  "license": "MIT",
   "dependencies": {
     "inquirer": "^9.2.17"
   },
